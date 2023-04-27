@@ -48,6 +48,26 @@ class _HomePageState extends State<HomePage> {
               '$_difference days',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(255, 134, 134, 134)),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(1, 255, 208, 0)),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/datepicker');
+              },
+              child: Text('Date Picker'),
+            ),
+            // GestureDetector(
+            //   onTap: () =>
+            //       Navigator.pushNamed(context, "/clearyourmindwithbreathie"),
+            //   child: CustomImageTextButton(
+            //       inputText: 'Clear your mind with Breathie',
+            //       imagePath: 'assets/images/img_image19.png',
+            //       imageScale: 2.8),
+            // ),
           ],
         ),
       ),
