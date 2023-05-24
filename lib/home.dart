@@ -1,3 +1,4 @@
+import 'package:demo/date-picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +10,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final date1 = DateTime(2023, 01, 03);
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  // final date1 = DateTime(2023, 01, 03);
+  DateTime date1 = DateTime.now();
   final date2 = DateTime.now();
   int _difference = 0;
 
@@ -27,6 +44,7 @@ class _HomePageState extends State<HomePage> {
         return (to.difference(from).inHours / 24).round();
       }
 
+      date1 = DateTime.parse("${selectedDate.toLocal()}".split(' ')[0]);
       _difference = daysBetween(date1, date2);
     });
   }
@@ -48,26 +66,16 @@ class _HomePageState extends State<HomePage> {
               '$_difference days',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            TextButton(
+            ElevatedButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(255, 134, 134, 134)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(1, 255, 208, 0)),
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/datepicker');
-              },
-              child: Text('Date Picker'),
+              onPressed: () => _selectDate(context),
+              child: Text('Select Date'),
             ),
-            // GestureDetector(
-            //   onTap: () =>
-            //       Navigator.pushNamed(context, "/clearyourmindwithbreathie"),
-            //   child: CustomImageTextButton(
-            //       inputText: 'Clear your mind with Breathie',
-            //       imagePath: 'assets/images/img_image19.png',
-            //       imageScale: 2.8),
-            // ),
           ],
         ),
       ),
