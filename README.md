@@ -1,4 +1,4 @@
-# demo
+# Day Counter
 
 A new Flutter project.
 
