@@ -67,12 +67,6 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(255, 134, 134, 134)),
-                backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(1, 255, 208, 0)),
-              ),
               onPressed: () => _selectDate(context),
               child: Text('Select Date'),
             ),
